@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue !{% endblock %}
+
+{% block body %}
+    {% if prenom is defined %}
+
+        <p>Bienvenue {{ prenom | capitalize }} dans le cours Symfony !</p>
+        <p>Le prenom a une longueur de {{ prenom | length }} caractères !</p>
+
+        {# Tester si le prénom commence par la lettre 'J' #}
+        {% if prenom starts with "j" or "J" %}
+            <p>Le prenom commence par la lettre J</p>
+        {% else %}
+            <p>Le prenom ne commence pas par la lettre J</p>
+        {% endif %}
+
+    {% else %}
+
+        <p>Bienvenue dans le cours Symfony !</p>
+
+    {% endif %}
+{% endblock %}

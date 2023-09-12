@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue !{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue au personne ci-dessous</h1>
+    <ul>
+        {% for personne in personnes %}
+        <li>{{ personne|capitalize }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
