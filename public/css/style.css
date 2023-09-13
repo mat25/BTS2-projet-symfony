@@ -1,0 +1,26 @@
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    color: brown;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: black;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+footer p {
+    color: white;
+    text-align: center;
+
+}

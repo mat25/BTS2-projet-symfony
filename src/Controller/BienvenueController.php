@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BienvenueController extends AbstractController
 {
-    #[Route('/bienvenue', name: 'app_bienvenue')]
+    #[Route('/welcome', name: 'app_bienvenue')]
     public function bienvenue(): Response
     {
         // Appel a a la vue
