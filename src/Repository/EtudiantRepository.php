@@ -21,6 +21,35 @@ class EtudiantRepository extends ServiceEntityRepository
         parent::__construct($registry, Etudiant::class);
     }
 
+    // Methode permettant de rechercher tout les étudiants mineurs
+    public function findMineurs() :array {
+        // Utiliser le langage DQL (Doctrine Query Langauge)
+        // Exprimer des requetes se basant sur le modele objet (Entity)
+        // La requete DQL sera transformer en une requete SQL par Doctrine
+        // Lors de l'execution de la methode
+        $dateMajorite = new \DateTime("-18 years");
+        // 1. Exprimer la requete DQL
+        $requeteDQL = "SELECT etudiant FROM App\Entity\Etudiant as etudiant 
+        WHERE etudiant.dateNaissance > :dateMajorite";
+        // 2. Construire la requete (representation object de la requete)
+        $requete = $this->getEntityManager()->createQuery($requeteDQL);
+        // 3. Donner une valeur au parametre de la requete
+        $requete->setParameter('dateMajorite',$dateMajorite);
+        // 4. Executer la requete et retourner le resultat
+        // 4. Executer la requete et retourner le resultat
+        return $requete->getResult();
+    }
+
+    public function findMineurs2() : array {
+        // Utiliser le Query Builder : classe permettant de construire
+        // Dynamiquement des requêtes DQL
+        $dateMajorite = new \DateTime("-18 years");
+        return $this->createQueryBuilder('e')
+            ->where("e.dateNaissance > :dateMajorite")
+            ->setParameter('dateMajorite',$dateMajorite)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Etudiant[] Returns an array of Etudiant objects
 //     */

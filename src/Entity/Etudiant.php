@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EtudiantRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 #[ORM\Entity(repositoryClass: EtudiantRepository::class)]
 class Etudiant
@@ -77,5 +78,11 @@ class Etudiant
         $this->dateNaissance = $dateNaissance;
 
         return $this;
+    }
+
+    public function getAge() : int {
+        $dateJour = new \DateTime();
+        $interval = $this->dateNaissance->diff($dateJour);
+        return $interval->y;
     }
 }
