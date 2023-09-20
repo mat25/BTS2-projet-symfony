@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\EtudiantRepository;
+use App\Repository\PromotionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,9 +28,10 @@ class EtudiantController extends AbstractController
     public function details(EtudiantRepository $etudiantRepository,int $id_etudiant): Response
     {
         $etudiant = $etudiantRepository->find($id_etudiant);
-
+        $promotion = ["nom"=>$etudiant->getPromotion()->getNom(),"annee" => $etudiant->getPromotion()->getAnnee()];
         return $this->render('etudiant/detail_etudiant.html.twig', [
             'etudiant' => $etudiant,
+            'promotion' => $promotion,
         ]);
     }
     #[Route('/etudiants/mineurs', name: 'app_etudiant_mineurs_list')]

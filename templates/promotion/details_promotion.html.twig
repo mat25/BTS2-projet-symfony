@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PromotionController!{% endblock %}
+
+{% block body %}
+    <h1>Details promotion</h1>
+    <ul>
+        <li>Nom : {{ promotion.nom }}</li>
+        <li>Nom : {{ promotion.annee }}</li>
+        <li>Nombre Etudiant : {{ nombreEtudiants }}</li>
+    </ul>
+    <ul>
+        <h2>Liste des etudiants</h2>
+        {% for etudiant in etudiants %}
+            <li><a href="{{ path('app_etudiant_details',{"id_etudiant" : etudiant.id}) }}">{{ etudiant.prenom }} {{ etudiant.nom }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

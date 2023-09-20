@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Etudiant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class EtudiantFixtures extends Fixture
+class EtudiantFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -21,10 +22,17 @@ class EtudiantFixtures extends Fixture
             $etudiant->setNom($faker->lastName());
             $etudiant->setEmail($faker->email());
             $etudiant->setDateNaissance($faker->dateTimeBetween('-30 years','-17 years'));
+            $etudiant->setPromotion($this->getReference("promotion_".$faker->numberBetween(1,10)));
             // Persister l'etudiant
             // Doctrine va génerer un INSERT INTO ...
             $manager->persist($etudiant);
         }
         $manager->flush();
+    }
+    public function getDependencies() : array
+    {
+        return [
+          PromotionFixtures::class
+        ];
     }
 }

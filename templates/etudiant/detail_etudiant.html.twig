@@ -10,5 +10,6 @@
         <li>Email : {{ etudiant.email }}</li>
         <li>Date de naissance : {{ etudiant.dateNaissance |date("d/m/Y") }}</li>
         <li>Age : {{ etudiant.age }}</li>
+        <li>Promotion : {{ promotion.nom }} {{ promotion.annee }}</li>
     </ul>
 {% endblock %}
